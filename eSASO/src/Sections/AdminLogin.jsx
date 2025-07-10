@@ -18,7 +18,7 @@ const AdminLogin = () => {
   }, []);
 
   return (
-      <main className="flex items-start justify-center min-h-screen bg-gradient-to-br from-green-100 via-white to-green-200 px-4 pt-32 md:pt-40 relative overflow-hidden">
+    <main className="flex justify-center min-h-screen bg-gradient-to-br from-green-100 via-white to-green-200 px-4 py-12 relative overflow-hidden">
       {/* Back Button */}
       <button
         onClick={() => navigate(-1)}
@@ -29,7 +29,7 @@ const AdminLogin = () => {
 
       {/* Login Card */}
       <div
-        className={`w-full max-w-xl p-12 bg-white rounded-3xl shadow-2xl border border-green-200 transform transition-all duration-700 ease-out
+        className={`my-auto w-full max-w-xl p-12 bg-white rounded-3xl shadow-2xl border border-green-200 transform transition-all duration-700 ease-out
         ${animate ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
       >
         {/* Title */}
