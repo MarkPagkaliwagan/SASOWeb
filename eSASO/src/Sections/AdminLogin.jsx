@@ -18,7 +18,7 @@ const AdminLogin = () => {
   }, []);
 
   return (
-    <main className="flex items-center justify-center min-h-screen bg-gradient-to-br from-green-100 via-white to-green-200 px-4 relative overflow-hidden">
+      <main className="flex items-center justify-center min-h-screen bg-gradient-to-br from-green-100 via-white to-green-200 px-4 relative overflow-hidden pt-10">
       {/* Back Button */}
       <button
         onClick={() => navigate(-1)}
