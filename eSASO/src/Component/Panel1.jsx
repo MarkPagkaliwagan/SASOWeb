@@ -3,7 +3,7 @@ import Campus from '../images/Campus.png';
 import Campus1 from '../images/Campus1.png'; // <-- bagong import para sa mobile
 
 const images = Object.values(
-  import.meta.glob('../images/panel1/*.{jpg,jpeg,png}', {
+  import.meta.glob('../images/Panel1/*.{jpg,jpeg,png}', {
     eager: true,
     import: 'default',
   })
