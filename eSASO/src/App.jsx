@@ -14,6 +14,9 @@ import Admissions from './Sections/Admission';
 import Personel from './Sections/Personel';
 import Contact from './Sections/Contact';
 
+import College from './Forms/College';
+
+
 
 function App() {
   return (
@@ -36,6 +39,8 @@ function App() {
         <Route path="/department-units" element={<Department />} />
         <Route path="/Personel" element={<Personel />} />
         <Route path="/Contact" element={<Contact />} />
+
+        <Route path="/admission-form/college" element={<College />} />
 
       </Routes>
       <Footer /> {/* 👈 Add Footer here */}

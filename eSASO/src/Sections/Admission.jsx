@@ -35,6 +35,18 @@ const formButtons = [
 
 const Admissions = () => {
   const navigate = useNavigate();
+  const [showConsent, setShowConsent] = React.useState(false);
+  const [consentPath, setConsentPath] = React.useState('');
+
+  const handleCardClick = (path) => {
+    setConsentPath(path);
+    setShowConsent(true);
+  };
+
+  const handleConsentProceed = () => {
+    setShowConsent(false);
+    navigate(consentPath);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white text-gray-800 font-sans">
@@ -54,7 +66,7 @@ const Admissions = () => {
       {/* Hero Section */}
       <section className="bg-green-800 py-16 px-6 text-center">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-4xl font-bold text-white  mb-4">Welcome to SPC Admissions</h2>
+          <h2 className="text-4xl font-bold text-white mb-4">Welcome to SPC Admissions</h2>
           <p className="text-lg text-white">
             Discover your future here. Choose the program that fits you and take the first step toward success.
           </p>
@@ -70,16 +82,13 @@ const Admissions = () => {
               key={title}
               className="relative bg-white border border-gray-200 rounded-3xl shadow-xl p-6 pt-12 hover:shadow-green-200 transition-all group"
             >
-              {/* Floating Icon */}
               <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-green-100 rounded-full p-4 shadow-md group-hover:bg-green-200">
                 <div className="text-green-700 text-3xl">{icon}</div>
               </div>
 
-              {/* Title */}
               <h4 className="text-xl font-bold text-center text-green-800 mt-2 mb-2">{title}</h4>
               <hr className="border-t-2 border-green-100 mb-4 w-2/3 mx-auto" />
 
-              {/* Levels List */}
               <ul className="text-sm text-gray-700 space-y-1 mb-6">
                 {levels.map((level, i) => (
                   <li key={i} className="pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-green-600">
@@ -88,9 +97,8 @@ const Admissions = () => {
                 ))}
               </ul>
 
-              {/* CTA Button */}
               <button
-                onClick={() => navigate(path)}
+                onClick={() => handleCardClick(path)}
                 className="block w-full mt-auto bg-green-600 text-white text-sm font-semibold py-2 rounded-full hover:bg-green-700 transition"
               >
                 Apply Now
@@ -102,6 +110,11 @@ const Admissions = () => {
 
       {/* Admissions Information Panel */}
       <AdmissionsInfoPanel />
+
+      {/* Consent Modal */}
+      {showConsent && (
+        <ConsentModal onClose={() => setShowConsent(false)} onProceed={handleConsentProceed} />
+      )}
 
       {/* Spacer */}
       <div className="h-32" />
@@ -209,5 +222,57 @@ const AdmissionsInfoPanel = () => (
     </InfoPanel>
   </section>
 );
+
+// Consent Modal Component
+const ConsentModal = ({ onClose, onProceed }) => {
+  const [checked, setChecked] = React.useState(false);
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+      <div className="bg-white rounded-xl shadow-xl p-6 w-full max-w-lg space-y-4">
+        <h2 className="text-xl font-bold text-green-800">📜 Declaration of Consent</h2>
+        <p className="text-sm text-gray-700">
+          I express consent for the school to collect, store, and process my personal data. I understand that my consent
+          does not preclude the existence of other criteria for lawful processing of personal data, and does not waive
+          any of my rights under the Data Privacy Act of 2012 and other applicable laws. Furthermore, I certify that the
+          information given herein is correct and complete.
+        </p>
+
+        <div className="flex items-start gap-2">
+          <input
+            type="checkbox"
+            id="consent"
+            checked={checked}
+            onChange={(e) => setChecked(e.target.checked)}
+            className="mt-1 accent-green-600"
+          />
+          <label htmlFor="consent" className="text-sm text-gray-800">
+            I have read and agree to the statement above.
+          </label>
+        </div>
+
+        <div className="flex justify-end gap-2 pt-2">
+          <button
+            onClick={onClose}
+            className="px-4 py-1 rounded bg-gray-200 text-gray-700 hover:bg-gray-300 text-sm"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={onProceed}
+            disabled={!checked}
+            className={`px-4 py-1 rounded text-sm ${
+              checked
+                ? 'bg-green-600 text-white hover:bg-green-700'
+                : 'bg-gray-300 text-gray-400 cursor-not-allowed'
+            }`}
+          >
+            Proceed
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Admissions;
