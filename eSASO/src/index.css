@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+body {
+  @apply bg-yellow-100 text-black; /* Changed to black text for better contrast */
+}
+/* Add to your main CSS file */
+.grid-bg {
+  background-image: 
+    linear-gradient(#d1d5db 1px, transparent 1px),
+    linear-gradient(to right, #d1d5db 1px, transparent 1px);
+  background-size: 40px 40px;
+}
