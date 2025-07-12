@@ -2,26 +2,33 @@ import React from 'react';
 import Slider from 'react-slick';
 
 // College images
-import Activity1 from '../images/Activity1.jpg';
-import Activity2 from '../images/Activity2.jpg';
-import Activity3 from '../images/Activity3.jpg';
-import Activity4 from '../images/Activity4.jpg';
-import Activity5 from '../images/Activity5.jpg';
-import Activity6 from '../images/Activity6.jpg';
+import College1 from '../images/DepartmentProgram/College1.jpg';
+import College2 from '../images/DepartmentProgram/College2.jpg';
+import College3 from '../images/DepartmentProgram/College3.jpg';
+import College4 from '../images/DepartmentProgram/College4.jpg';
+import College5 from '../images/DepartmentProgram/College5.jpg';
+import College6 from '../images/DepartmentProgram/College6.jpg';
 
 // SHS images
-import SHS1 from '../images/SHS1.png';
-import SHS2 from '../images/SHS2.jpg';
-import SHS3 from '../images/SHS3.png';
-import SHS4 from '../images/SHS4.png';
-import SHS5 from '../images/SHS5.png';
-import SHS6 from '../images/SHS6.png';
-import SHS7 from '../images/SHS7.png';
-import SHS8 from '../images/SHS8.png';
+import SHS1 from '../images/DepartmentProgram/SHS1.png';
+import SHS2 from '../images/DepartmentProgram/SHS2.jpg';
+import SHS3 from '../images/DepartmentProgram/SHS3.png';
+import SHS4 from '../images/DepartmentProgram/SHS4.png';
+import SHS5 from '../images/DepartmentProgram/SHS5.png';
+import SHS6 from '../images/DepartmentProgram/SHS6.png';
+import SHS7 from '../images/DepartmentProgram/SHS7.png';
+import SHS8 from '../images/DepartmentProgram/SHS8.png';
+
 
 // JHS images
-import JHS1 from '../images/JHS1.jpg';
-import JHS2 from '../images/JHS2.jpg';
+import JHS1 from '../images/DepartmentProgram/JHS1.jpg';
+import JHS2 from '../images/DepartmentProgram/JHS2.jpg';
+
+
+// GS images
+import GS1 from '../images/DepartmentProgram/GS1.jpg';
+import GS2 from '../images/DepartmentProgram/GS2.jpg';
+import GS3 from '../images/DepartmentProgram/GS3.jpg';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -75,17 +82,17 @@ const Announcement1 = () => {
   return (
     <>
       {renderSection({
-        title: 'Announcement for College',
-        heading: 'SPC - College Courses Offered',
+        title: 'Announcement From College',
+        heading: 'SPC - College Program Offered',
         description: descriptionText,
         buttonText: 'Apply for College',
-        images: [Activity1, Activity2, Activity3, Activity4, Activity5, Activity6],
+        images: [College1, College2, College3, College4, College5, College6],
         reverse: false,
       })}
 
       {renderSection({
-        title: 'Announcement for Senior High School',
-        heading: 'SPC - SHS Strands Offered',
+        title: 'Announcement From Senior High School',
+        heading: 'SPC - SHS Program Offered',
         description: descriptionText,
         buttonText: 'Apply for SHS',
         images: [SHS1, SHS2, SHS3, SHS4, SHS5, SHS6, SHS7, SHS8],
@@ -93,12 +100,21 @@ const Announcement1 = () => {
       })}
 
       {renderSection({
-        title: 'Announcement for Junior High School',
-        heading: 'SPC - JHS Courses Offered',
+        title: 'Announcement From Junior High School',
+        heading: 'SPC - JHS Program Offered',
         description: descriptionText,
         buttonText: 'Apply for JHS',
         images: [JHS1, JHS2],
         reverse: false,
+      })}
+
+            {renderSection({
+        title: 'Announcement for Grade School',
+        heading: 'SPC - GS Program Offered',
+        description: descriptionText,
+        buttonText: 'Apply for GS',
+        images: [GS1, GS2, GS3],
+        reverse: true,
       })}
     </>
   );
