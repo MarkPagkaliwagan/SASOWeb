@@ -1,49 +1,60 @@
-// App.jsx
+// src/App.jsx
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+
 import Navbar from './Component/Navbar';
-
+import Footer from './Component/Footer';
 import Panel1 from './Component/Panel1';
-import Panel2 from './Component/Panel2'; 
-import Panel3 from './Component/Panel3'; 
+import Panel2 from './Component/Panel2';
+import Panel3 from './Component/Panel3';
 
-import Footer from './Component/Footer'; // 👈 Import Footer
-
+import AdminLogin from './Sections/AdminLogin';
+import AdminDashboard from './Sections/AdminDashboard';
+import ResetPassword from './Sections/ResetPassword';
 import Department from './Sections/Department';
-import AdminLogin from './Sections/AdminLogin'; 
 import Admissions from './Sections/Admission';
 import Personel from './Sections/Personel';
 import Contact from './Sections/Contact';
-
 import College from './Forms/College';
 
-
-
 function App() {
+  const isLoggedIn = localStorage.getItem('isAdminLoggedIn') === 'true';
+
   return (
     <Router>
       <Navbar />
       <Routes>
+        {/* Landing Page */}
         <Route
           path="/"
           element={
-            <div>
+            <>
               <Panel1 />
               <Panel2 />
               <Panel3 />
-            </div>
+            </>
           }
         />
+
+        {/* Admin Routes */}
+        <Route
+          path="/admin"
+          element={isLoggedIn ? <Navigate to="/admin/dashboard" replace /> : <AdminLogin />}
+        />
+        <Route path="/admin/reset-password-form" element={<ResetPassword />} />
+        <Route
+          path="/admin/dashboard"
+          element={isLoggedIn ? <AdminDashboard /> : <Navigate to="/admin" replace />}
+        />
+
+        {/* Public Routes */} 
         <Route path="/admissions" element={<Admissions />} />
-        <Route path="/admin" element={<AdminLogin />} />
         <Route path="/department-units" element={<Department />} />
-        <Route path="/Personel" element={<Personel />} />
-        <Route path="/Contact" element={<Contact />} />
-
+        <Route path="/personel" element={<Personel />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/admission-form/college" element={<College />} />
-
       </Routes>
-      <Footer /> {/* 👈 Add Footer here */}
+      <Footer />
     </Router>
   );
 }
