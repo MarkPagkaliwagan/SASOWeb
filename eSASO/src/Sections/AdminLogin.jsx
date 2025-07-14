@@ -26,10 +26,12 @@ const AdminLogin = () => {
 
   const handleLogin = async () => {
     try {
+      // Get CSRF cookie first
       await axios.get(`${import.meta.env.VITE_API_URL}/sanctum/csrf-cookie`, {
         withCredentials: true,
       });
 
+      // Then perform login
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/admin/login`,
         { username, password },
@@ -149,7 +151,7 @@ const AdminLogin = () => {
             >
               <IoCloseOutline className="text-2xl" />
             </button>
-            <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+            <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-green-800">
               <IoMailOutline />
               Forgot Password
             </h3>
